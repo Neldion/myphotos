@@ -1,0 +1,10 @@
+strings:
+  inputs: MyPhotos/Resources/Localizable.strings
+  outputs:
+    templatePath: SwiftGenStencil/structured-swift5.stencil
+    output: MyPhotos/Resources/String.swift
+xcassets:
+  inputs: MyPhotos/Resources/Assets.xcassets
+  outputs:
+    templatePath: SwiftGenStencil/images-molotov.stencil
+    output: MyPhotos/Resources/ImageEnumGenerated.swift

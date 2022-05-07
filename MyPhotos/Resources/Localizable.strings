@@ -1,0 +1,5 @@
+"title.app" = "MyPhotos";
+"error.api" = "Error server access";
+"error.like" = "Like not possible";
+"alert.title" = "Information";
+"alert.close_button" = "Close";
