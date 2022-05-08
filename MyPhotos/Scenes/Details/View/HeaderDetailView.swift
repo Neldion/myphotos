@@ -41,7 +41,6 @@ final class HeaderDetailView: UIView {
     let action = UIAction(handler: { [weak self] _ in
       guard let self = self else { return }
       self.likeButton.touchAnimation(impactStyle: .medium)
-//      self.delegate?.didTapLike(in: self)
     })
     button.addAction(action, for: .primaryActionTriggered)
     return button
@@ -87,9 +86,9 @@ final class HeaderDetailView: UIView {
   static func size(for header: DetailsScene.Header, for width: CGFloat) -> CGSize {
     let view = HeaderDetailView(frame: CGRect(x: 0, y: 0, width: width, height: 200))
     view.setup(with: header)
-    view.stackView.widthAnchor.constraint(equalToConstant: width).isActive = true
+    view.widthAnchor.constraint(equalToConstant: width).isActive = true
     view.layoutIfNeeded()
-    return view.stackView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+    return view.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
   }
 
   func setup(with configuration: DetailsScene.Header) {
@@ -119,12 +118,11 @@ final class HeaderDetailView: UIView {
   private func setupConstraints() {
     NSLayoutConstraint.activate([
       stackView.topAnchor.constraint(equalTo: topAnchor),
-      stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
-      stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
+      stackView.widthAnchor.constraint(equalTo: widthAnchor),
+      stackView.centerXAnchor.constraint(equalTo: centerXAnchor),
       stackView.bottomAnchor.constraint(equalTo: bottomAnchor),
 
-      pictureView.leadingAnchor.constraint(equalTo: leadingAnchor),
-      pictureView.trailingAnchor.constraint(equalTo: trailingAnchor),
+      pictureView.widthAnchor.constraint(equalTo: stackView.widthAnchor),
       pictureView.heightAnchor.constraint(equalTo: pictureView.widthAnchor)
     ])
   }

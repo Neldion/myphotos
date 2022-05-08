@@ -38,7 +38,7 @@ final class SectionHeader: UICollectionReusableView {
 
   private func setupConstraints() {
     NSLayoutConstraint.activate([
-      titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
+      titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 4),
       titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor)
     ])
   }

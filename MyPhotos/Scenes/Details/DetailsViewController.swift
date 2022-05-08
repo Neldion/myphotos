@@ -14,9 +14,7 @@ final class DetailsViewController: UIViewController, UIGestureRecognizerDelegate
   var router: DetailsRoutingProtocol?
   private var interactor: DetailsBusinessLogic?
   private var viewModel: DetailsScene.ViewModel?
-  private var headerHeight: CGFloat {
-    view.bounds.size.height * 0.7
-  }
+  private var headerHeight: CGFloat = 0
 
   private lazy var backButton: UIBarButtonItem = {
     let button = UIBarButtonItem(image: AppAssets.back.image,
@@ -132,6 +130,7 @@ final class DetailsViewController: UIViewController, UIGestureRecognizerDelegate
       headerView.topAnchor.constraint(equalTo: view.topAnchor, constant: 32),
       headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
       headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+
       collectionView.topAnchor.constraint(equalTo: view.topAnchor),
       collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
       collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -151,7 +150,7 @@ final class DetailsViewController: UIViewController, UIGestureRecognizerDelegate
       let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(fractionnalItemWidth),
                                             heightDimension: .fractionalHeight(1))
       let item = NSCollectionLayoutItem(layoutSize: itemSize)
-      item.contentInsets = NSDirectionalEdgeInsets(top: 6, leading: 6, bottom: 6, trailing: 6)
+      item.contentInsets = NSDirectionalEdgeInsets(top: 4, leading: 4, bottom: 4, trailing: 4)
 
       let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
                                              heightDimension: .fractionalWidth(imageHeight))
@@ -160,7 +159,7 @@ final class DetailsViewController: UIViewController, UIGestureRecognizerDelegate
       section.contentInsets = NSDirectionalEdgeInsets(top: 12, leading: 12, bottom: 12, trailing: 12)
 
       let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                              heightDimension: .absolute(32))
+                                              heightDimension: .absolute(24))
 
       let layoutSectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,
                                                                             elementKind: UICollectionView.elementKindSectionHeader,
@@ -187,6 +186,10 @@ extension DetailsViewController: DetailsDisplayLogic {
       navigationItem.titleView = userView
 
       headerView.setup(with: viewModel.header)
+
+      headerView.setNeedsLayout()
+      headerView.layoutIfNeeded()
+      headerHeight = HeaderDetailView.size(for: viewModel.header, for: view.bounds.width).height + 16
 
       collectionView.contentInset = UIEdgeInsets(top: headerHeight, left: 0, bottom: 0, right: 0)
 
